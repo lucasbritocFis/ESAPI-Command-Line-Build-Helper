@@ -75,8 +75,8 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe
 Clone the repository:
 
 ```bat
-git clone https://github.com/lucasbritocFis/ESAPI-Offline-Compiler.git
-cd ESAPI-Offline-Compiler
+git clone https://github.com/lucasbritocFis/ESAPI-Command-Line-Build-Helper.git
+cd ESAPI-Command-Line-Build-Helper
 ```
 
 Run the environment checker:
@@ -145,7 +145,7 @@ The current version accepts one C# source file at a time.
 ## Repository structure
 
 ```text
-ESAPI-Offline-Compiler/
+ESAPI-Command-Line-Build-Helper/
 ├── examples/
 │   └── HelloEsapi.cs
 ├── scripts/
