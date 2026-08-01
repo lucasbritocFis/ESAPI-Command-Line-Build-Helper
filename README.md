@@ -67,7 +67,9 @@ The current compiler path is:
 ```text
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe
 ```
-
+The compiler shipped with the .NET Framework supports C# 5. Language
+features introduced in C# 6 or later — string interpolation, `nameof`,
+expression-bodied members — are not available and will fail to compile.
 ---
 
 ## Setup
