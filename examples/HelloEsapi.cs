@@ -1,6 +1,7 @@
 using System;
-using System.Windows.Forms;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 
@@ -9,20 +10,23 @@ using VMS.TPS.Common.Model.Types;
 
 namespace VMS.TPS
 {
+    // Minimal read-only example.
+    // Written against C# 5: no string interpolation, so it compiles with the
+    // csc.exe shipped with the .NET Framework.
     public class Script
     {
         public void Execute(ScriptContext context)
         {
             if (context.Patient == null)
             {
-                MessageBox.Show("Nenhum paciente aberto.", "Hello ESAPI");
+                MessageBox.Show("No patient is open.", "Hello ESAPI");
                 return;
             }
 
-            var ss = context.StructureSet;
+            StructureSet ss = context.StructureSet;
             if (ss == null)
             {
-                MessageBox.Show("Nenhum StructureSet ativo.", "Hello ESAPI");
+                MessageBox.Show("No active structure set.", "Hello ESAPI");
                 return;
             }
 
@@ -32,11 +36,14 @@ namespace VMS.TPS
                 .OrderBy(id => id)
                 .ToList();
 
-            string msg = $"Paciente: {context.Patient.LastName}, {context.Patient.FirstName}\n" +
-                         $"Estruturas encontradas ({structures.Count}):\n" +
-                         string.Join(", ", structures);
+            // Patient ID only - no names, so screenshots stay safe to share.
+            string msg =
+                "Patient ID: " + context.Patient.Id + Environment.NewLine +
+                "Structure set: " + ss.Id + Environment.NewLine +
+                "Non-empty structures (" + structures.Count + "):" + Environment.NewLine +
+                string.Join(", ", structures);
 
-            MessageBox.Show(msg, "Compilação ESAPI bem-sucedida!");
+            MessageBox.Show(msg, "ESAPI build succeeded");
         }
     }
 }
